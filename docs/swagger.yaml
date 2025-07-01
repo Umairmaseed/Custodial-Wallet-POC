@@ -1,0 +1,39 @@
+swagger: "2.0"
+info:
+  title: PrismFX Wallet API
+  description: PrismFX Wallet API — simple Go-based service starter with Gin and Swagger.
+  termsOfService: https://swagger.io/terms/
+  contact:
+    name: PrismFX
+  version: "1.0.0"
+host: localhost:8080
+basePath: /
+schemes:
+  - http
+paths:
+  /ping:
+    get:
+      summary: Ping
+      description: check server
+      tags:
+        - ping
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/models.Response"
+definitions:
+  models.Response:
+    type: object
+    properties:
+      success:
+        type: boolean
+      message:
+        type: string
+      data:
+        type: object
+        additionalProperties: {}

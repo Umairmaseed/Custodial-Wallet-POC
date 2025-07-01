@@ -1,0 +1,51 @@
+{
+  "schemes": ["http"],
+  "swagger": "2.0",
+  "info": {
+    "description": "PrismFX Wallet API — simple Go-based service starter with Gin and Swagger.",
+    "title": "PrismFX Wallet",
+    "termsOfService": "https://swagger.io/terms/",
+    "contact": {
+      "name": "PrismFX"
+    },
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "paths": {
+    "/ping": {
+      "get": {
+        "description": "Check if the server is running.",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["Ping"],
+        "summary": "Ping",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.Response"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "models.Response": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "message": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
