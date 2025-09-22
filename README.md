@@ -24,10 +24,10 @@
 
 ```bash
 # Clone Project
-git clone <Repository>
+git clone https://github.com/Umairmaseed/Custodial-Wallet-POC.git
 
 # Change Directory
-cd PrismFX_Wallet
+cd Custodial-Wallet-POC
 ```
 
 #### Using Docker
@@ -71,6 +71,7 @@ You can also see: http://localhost:8080/swagger/index.html
 ```
 ├── controllers         # contains api functions and main business logic
 ├── docs                # swagger files
+├── handlers            # used as bridge between controllers and services
 ├── logs
 ├── middlewares         # request/response middlewares
 │   └── validators      # data/request validators
@@ -78,4 +79,41 @@ You can also see: http://localhost:8080/swagger/index.html
 ├── routes              # router initialization
 ├──  services            # general service
 └── utils               #Utilities
+```
+
+## Project Future Structure
+
+```
+├── controllers/
+│   ├── wallet_controller.go           # Handles API endpoints for wallet operations
+│   └── transaction_controller.go      # Initiates/send internal transactions
+├── docs                                # swagger files
+├── handlers                            # used as bridge between controllers and services
+├── middlewares/
+│   └── validators/
+│       └── wallet_validators.go       # Validate wallet creation / transaction input
+
+├── models/
+│   ├── wallet.go                      # Wallet DB models
+│   └── transaction.go                 # Transaction history/log model
+
+├── routes/
+│   └── wallet_routes.go               # Define wallet-related routes
+
+├── services/
+│   ├── wallet/                        # Wallet-specific business logic
+│   │   ├── generator.go               # Wallet generator using Shamir
+│   │   ├── signer.go                  # Internal signer using private key shares
+│   │   └── transfer.go                # Logic to send asset internally
+│   ├── chains/                        # Logic per blockchain (ERC20, TRC20, etc.)
+│   │   ├── ethereum.go
+│   │   └── tron.go
+│   ├── shamir/                        # Shamir Secret Sharing helper module
+│   │   ├── split.go
+│   │   └── reconstruct.go
+│   └── keyvault/                      # Storage/retrieval for key shares
+
+├── utils/
+│   ├── crypto.go                # General ECDSA, AES helpers
+│   └── constants.go                   # Network IDs, gas fees, etc.
 ```
